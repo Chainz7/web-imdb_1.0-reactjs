@@ -4,7 +4,7 @@
 /*==================== BASE ====================*/
 
 * {
-    border: 0px solid white;
+    border: 1px solid white;
 }
 
 body {
@@ -14,6 +14,7 @@ body {
         sans-serif; */
     font-family: 'Amazon Ember', sans-serif;
     background: #000000;
+    color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -113,3 +114,5 @@ span.navbar__modalHeaderList {
     margin-bottom: .8rem;
     margin-left: -1.7rem;
 }
+
+/*==================== HOMEPAGE ====================*/

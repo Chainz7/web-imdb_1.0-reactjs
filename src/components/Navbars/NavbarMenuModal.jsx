@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { whiteOneColor, orangeOneColor, blackTwoColor, blackFourColor, blackOneColor } from '../../assets/variables'
+import { whiteOneColor, orangeOneColor, blackTwoColor, blackFourColor } from '../../assets/variables'
 
 const MenuModal= styled.nav`
     font-size: 14px;
@@ -20,14 +20,18 @@ const MenuModal= styled.nav`
     max-height: calc(100vh - 32px); 
     overflow-y: auto; 
     animation: slideDown 0.3s linear;
+    pointer-events: none;
 `
 const MenuModalFirst = styled.nav`
+    pointer-events: auto;
     display: flex;
     gap: 55rem;
+    pointer-events: none;
 `
 const MenuModalLogo = styled.nav`
     width: 6rem;
     height: 3rem;
+    pointer-events: auto;
 `
 const MenuModalClose = styled.nav`
     color: ${blackTwoColor};
@@ -40,8 +44,10 @@ const MenuModalClose = styled.nav`
     width: 3rem;
     height: 3rem;
     border-radius: 3rem;
+    pointer-events: auto;
 `
 const MenuModalSecond = styled.nav`
+    pointer-events: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 12rem;
@@ -62,7 +68,7 @@ const NavbarMenuModal = (props) => {
       <MenuModal isOpen={isOpen}>
         <MenuModalFirst>
             <a href="#">
-                <MenuModalLogo>
+                <MenuModalLogo onClick={onClose}>
                     <img src="https://m.media-amazon.com/images/G/01/IMDb/brand/guidelines/imdb/IMDb_Logo_Rectangle_Gold._CB443386186_.png" alt="IMDB LOGO" />
                 </MenuModalLogo>
             </a>

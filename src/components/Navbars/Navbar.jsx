@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { whiteOneColor, blackTwoColor, blackFourColor } from '../assets/variables'
-import Search from '../assets/images/search.png'
-import NavbarMenuModal from './NavbarModals/NavbarMenuModal'
-import NavbarIMDbModal from './NavbarModals/NavbarIMDbModal'
+import { whiteOneColor, blackTwoColor } from '../../assets/variables'
+import Search from '../../assets/images/search.png'
+import NavbarMenuModal from './NavbarMenuModal'
+import NavbarIMDbModal from './NavbarIMDbModal'
 
 const NavbarContainer = styled.nav`
   font-size: 14px;
@@ -38,39 +38,38 @@ const NavbarMenu = styled.nav`
 const NavbarModalMenu = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
 `
-
 const NavbarThreeLine = styled.nav`
-display: grid;
-justify-items: center;
-align-items: center;
-gap: 0.2rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 0.2rem;
 `
 const NavbarLine = styled.nav`
-width: 1rem;
-height: 2px;
-border-radius: 0.1rem;
-background-color: ${whiteOneColor};
+  width: 1rem;
+  height: 2px;
+  border-radius: 0.1rem;
+  background-color: ${whiteOneColor};
 `
 const NavbarForm = styled.nav`
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 0.4rem;
-width: 700px;
-height: 2rem;
-border-radius: 0.2rem;
-margin-right: 0.75rem;
-background: ${whiteOneColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  width: 700px;
+  height: 2rem;
+  border-radius: 0.2rem;
+  margin-right: 0.75rem;
+  background: ${whiteOneColor};
 `
 const NavbarCategory = styled.nav`
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 0.4rem;
-width: auto;
-height: 100%;
-padding-left: .5rem;
-padding-right: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  width: auto;
+  height: 100%;
+  padding-left: .5rem;
+  padding-right: .5rem;
   border-radius: 0.3rem 0 0 0.3rem;
   border-right: 1px solid gray;
   cursor: pointer;
@@ -78,29 +77,29 @@ padding-right: .5rem;
     background-color: lightgray;
     transition: all 0.1s ease-in-out;
   }
-  `
-  const NavbarTriangleOne = styled.nav`
+`
+const NavbarTriangleOne = styled.nav`
   margin-top: 0.1rem;
   border-radius: 0.2rem;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 6px solid ${blackTwoColor};
-  `
-  const NavbarSearch = styled.nav`
+`
+const NavbarSearch = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  `
-  const NavbarButton = styled.nav`
+`
+const NavbarButton = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
-  `
-  const NavbarIMDB = styled.nav` 
+`
+const NavbarIMDB = styled.nav` 
   direction: rtl;
   display: grid;
   padding-top: 0.38rem;
@@ -113,16 +112,16 @@ padding-right: .5rem;
     background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.1s ease-in-out;
   }
-  `
-  const NavbarIMDbModalOpen = styled.div`
-    display: ${props => (props.isOpen ? 'block' : 'none')};
-  `
+`
+const NavbarIMDbModalOpen = styled.div`
+  display: ${props => (props.isOpen ? 'block' : 'none')};
+`
 const NavbarWatchlist = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.48rem;
+  padding: 0.38rem;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 0.2rem;
@@ -178,7 +177,6 @@ const NavbarTriangleTwo = styled.nav`
   border-right: 6px solid transparent;
   border-top: 6px solid ${whiteOneColor};
 `
-
 
 const Navbar = () => {
   const [isNavbarModalMenuOpen, setIsNavbarModalMenuOpen] = useState(false);

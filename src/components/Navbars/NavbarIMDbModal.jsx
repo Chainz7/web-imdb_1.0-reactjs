@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
 import { whiteOneColor, orangeTwoColor, blackOneColor } from '../../assets/variables'
 import Imdb from '../../assets/images/imdbpro_image.png'
 
@@ -22,8 +22,7 @@ const IMDbModalContainer= styled.div`
     gap: 1rem;
     width: 604px; 
     height: 221px; 
-    // margin-left: 76px;
-    background: linear-gradient(0deg, rgba(20,127,176,1) 0%, rgba(0,37,64,1) 100%);;
+    background: linear-gradient(0deg, rgba(20,127,176,1) 0%, rgba(0,17,31,1) 100%);
     border-radius: 0.3rem;
     border: none;
     padding-left: 1rem;
