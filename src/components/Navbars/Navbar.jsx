@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { whiteOneColor, blackTwoColor } from '../../assets/variables'
+
 import Search from '../../assets/images/search.png'
 import NavbarMenuModal from './NavbarMenuModal'
 import NavbarIMDbModal from './NavbarIMDbModal'
+
+import { whiteOneColor, blackTwoColor } from '../../assets/variables'
 
 const NavbarContainer = styled.nav`
   font-size: 14px;
@@ -129,6 +133,11 @@ const NavbarWatchlist = styled.nav`
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.1s ease-in-out;
+    .navbar_watchlist {
+      border-left: 8px solid ${whiteOneColor};
+      border-right: 8px solid ${whiteOneColor};
+      transition: all 0.2s ease-in-out;
+    }
   }
 `
 const NavbarBookmark = styled.nav`
@@ -177,16 +186,17 @@ const NavbarTriangleTwo = styled.nav`
   border-right: 6px solid transparent;
   border-top: 6px solid ${whiteOneColor};
 `
-
 const Navbar = () => {
   const [isNavbarModalMenuOpen, setIsNavbarModalMenuOpen] = useState(false);
   const [isNavbarModalIMDbOpen, setIsNavbarModalIMDbOpen] = useState(false);
+  const location = useLocation()
+  const isLoginOrSignup = location.pathname === '/login' || location.pathname === '/signup'
 
   const MenuModalClose = () => {
     setIsNavbarModalMenuOpen(false);
   }
   
-  return (
+  return ( isLoginOrSignup ? null : 
     <NavbarContainer>
       <a className='navbar__menu' href="#">
         <NavbarLogo>
@@ -231,13 +241,13 @@ const Navbar = () => {
       <span className="navbar__line"></span>
       <a className='navbar__menu' href="">
       <NavbarWatchlist>
-        <NavbarBookmark></NavbarBookmark>
+        <NavbarBookmark className='navbar_watchlist'></NavbarBookmark>
         Watchlist
       </NavbarWatchlist>
       </a>
       <a className='navbar__menu' href="#">
         <NavbarSignin>
-          Sign In
+          <Link to="/login" className='navbar_link'>Sign In</Link>
         </NavbarSignin>
       </a>
       <a className='navbar__menu' href="#">

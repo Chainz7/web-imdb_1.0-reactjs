@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import HomeDashboard from './HomeDashboard'
+import HomeFeatured from './HomeFeatured'
 
 const HomeContainer = styled.div`
   display: grid;
@@ -12,6 +13,7 @@ function Home() {
   return (
     <HomeContainer>
       <HomeDashboard></HomeDashboard>
+      <HomeFeatured></HomeFeatured>
     </HomeContainer>
   )
 }

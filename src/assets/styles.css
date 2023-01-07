@@ -4,7 +4,7 @@
 /*==================== BASE ====================*/
 
 * {
-    border: 1px solid white;
+    border: 0px solid red;
 }
 
 body {
@@ -46,7 +46,15 @@ img {
     }
 }
 
+/*==================== SWIPER ====================*/
+
+
 /*==================== NAV ====================*/
+.navbar_link {
+    text-decoration: none;
+    color: inherit;
+}
+
 a.navbar__menu {
     color: #FFFFFF;
 }

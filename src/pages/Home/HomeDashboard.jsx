@@ -3,7 +3,12 @@ import styled from 'styled-components'
 
 import AddIcon from '@mui/icons-material/Add';
 
-import { whiteOneColor, orangeOneColor } from '../../assets/variables'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+
+import { whiteOneColor, orangeOneColor, orangeTwoColor, blackTwoColor } from '../../assets/variables'
 
 const HomeContainer = styled.div`
   display: flex;
@@ -17,28 +22,21 @@ const HomeLeftContainer = styled.div`
     align-items: flex-start;
     width: 53rem;
     height: 33.5rem;
-    background-color: red;
-    border-radius: .25rem;
-`
-const HomeRightContainer = styled.div`
-    width: 27.7rem;
-    height: 33.5rem;
-    background-color: blue;
     border-radius: .25rem;
 `
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 33.5rem;
   border-radius: .25rem;
 `
 const ImageBig = styled.img.attrs({
   className: 'my-class',
 })`
+  object-fit: cover;
   width: 100%;
   height: 100%;
   border-radius: .25rem;
-  cursor: pointer;
 `
 const ImageOverlay = styled.div`
   display: flex;
@@ -50,26 +48,17 @@ const ImageOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+  background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 1) 88%);
 `
 const ImageSmall = styled.img.attrs({
   className: 'my-class',
 })`
+  object-fit: cover;
   position: relative;
   width: 20%;
   height: 43%;
   padding-left: 1rem;
 `
-// const ImageOverlaySmall = styled.div`
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: flex-end;
-//   position: fixed;
-//   padding-bottom: 11.11rem;
-//   padding-left: 1rem;
-//   width: 100%;
-//   height: 100%;
-// `
 const ImageBookmark = styled.div`
   display: flex;
   justify-content: center;
@@ -78,15 +67,15 @@ const ImageBookmark = styled.div`
   height: 2.5rem;
   margin-bottom: 177px;
   margin-left: -186px;
-  border-left: 20px solid rgba(255, 255, 255, 0.1);
-  border-right: 20px solid rgba(255, 255, 255, 0.1);
+  border-left: 20px solid ${blackTwoColor};
+  border-right: 20px solid ${blackTwoColor};
   border-bottom: 14px solid transparent;
   opacity: .5;
   cursor: pointer;
   &:hover {
-    border-left: 20px solid rgba(255, 255, 255, 0.3);
-    border-right: 20px solid rgba(255, 255, 255, 0.3);
-    opacity: .3;
+    border-left: 20px solid ${blackTwoColor};
+    border-right: 20px solid ${blackTwoColor};
+    opacity: .9;
     transition: all 0.2s ease-in-out;
   }
 `
@@ -98,70 +87,301 @@ const ImageName = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 1.5rem;
-  cursor: pointer;
   margin-left: 126px;
 `
 const ImageCircle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   border: 3px solid ${whiteOneColor};
   border-radius: 50%;
   cursor: pointer;
   &:hover {
     border: 3px solid ${orangeOneColor};
+    transition: all 0.1s ease-in-out;
+    .image_play {
+      border-left: 15px solid ${orangeOneColor};
+      transition: all 0.1s ease-in-out;
+    }
   }
 `
 const ImagePlay = styled.div`
-
+  width: 0; 
+  height: 0; 
+  margin-left: .25rem;
+  border-radius: .2rem;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid ${whiteOneColor};
+  &:hover {
+    border-left: 15px solid ${orangeOneColor};
+    transition: all 0.1s ease-in-out;
+  }
 `
 const ImageTitles = styled.div`
   display: grid;
   justify-content: start;
-  align-items: start;
+  align-items: center;
 `
 const ImageTitle = styled.div`
-
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 40px;
 `
 const ImageSubTitle = styled.div`
-
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.7);
 `
 const ImageMinute = styled.div`
-
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.7);
+`
+const HomeRightContainer = styled.div`
+  display: grid;
+  justify-content: start;
+  align-items: start;
+  grid-template-rows: 10% 90%;
+  width: 27.7rem;
+  height: 33.5rem;
+  border-radius: .25rem;
+`
+const RightUpcoming = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: ${orangeOneColor};
+`
+const ListsContainer = styled.div`
+  display: grid;
+  justify-items: start;
+  align-items: start;
+  gap: 1rem;
+  margin-top: -1rem;
+  width: 26.1rem;
+  border-radius: .25rem;
+  padding: .8rem;
+  background: linear-gradient(0deg, rgba(0,0,0,1) 55%, rgba(18,18,18,1) 100%);
+`
+const ListBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.2s ease-in-out;
+    .list_circle {
+      border: 1.5px solid ${orangeOneColor};
+      transition: all 0.1s ease-in-out;
+    }
+    .list_play {
+      border-left: 9px solid ${orangeOneColor};
+      transition: all 0.1s ease-in-out;
+    }
+  }
+`
+const ListImage = styled.img.attrs({
+  className: 'my-class',
+})`
+  object-fit: cover;
+  width: 88px;
+  height: 130px;
+  border-radius: .25rem;
+`
+const ListItems = styled.div`
+  display: grid;
+`
+const ListAttributes = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  gap: .5rem;
+  margin-bottom: .5rem;
+`
+const ListCircle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid ${whiteOneColor};
+  border-radius: 50%;
+  &:hover {
+    border: 1.5px solid ${orangeOneColor};
+    transition: all 0.1s ease-in-out;
+  }
+`
+const ListPlay = styled.div`
+  width: 0; 
+  height: 0; 
+  margin-left: .15rem;
+  border-radius: .2rem;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 9px solid ${whiteOneColor};
+  &:hover {
+    border-left: 9px solid ${orangeOneColor};
+    transition: all 0.1s ease-in-out;
+  }
+`
+const ListMinute = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+`
+const ListTitle = styled.div`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+`
+const ListSubTitle = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+`
+const ListFooter = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  margin-top: 1.4rem;
+  cursor: pointer;  
+  &:hover {
+    color: ${orangeTwoColor};
+  }
+`
+const StyledSwiper = styled(Swiper)`
+  .swiper-button-next, .swiper-button-prev {
+    color: white;
+    background: linear-gradient(0deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 100%);
+    opacity: .7;
+    border: .5px solid white;
+    border-radius: .3rem;
+    padding: .5rem;
+    margin-top: -3rem;
+    margin-left: -.6rem;
+    margin-right: -.6rem;
+    &:hover {
+        opacity: 1;
+        color: ${orangeOneColor};
+        transition: all 0.2s ease-in-out;
+    }
+  }
 `
 
 function HomeDashboard() {
   return (
     <HomeContainer>
+
         <HomeLeftContainer>
-          <ImageContainer>
-            <ImageBig src="https://m.media-amazon.com/images/M/MV5BMzZjY2IwNjMtZTQwMS00MjE0LTlmYzgtNzVhNDBhZjdlM2NjXkEyXkFqcGdeQWRpZWdtb25n._V1_.jpg" alt="" />
-            <ImageOverlay>
-              <ImageSmall src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt="" />
-              {/* <ImageOverlaySmall> */}
-              <ImageBookmark>
-                <ImagePlus/>
-              </ImageBookmark>
-              {/* </ImageOverlaySmall> */}
-
-              <ImageName>
-                <ImageCircle>
-                  <ImagePlay />
-                </ImageCircle>
-                <ImageTitles>
-                  <ImageTitle>Al Pacino Return "Hunters"</ImageTitle>
-                  <ImageSubTitle>Watch the Final Season Trailer</ImageSubTitle>
-                </ImageTitles>
-                <ImageMinute>1:32</ImageMinute>
-              </ImageName>
-
-            </ImageOverlay>  
-          </ImageContainer>
+          
+          <StyledSwiper navigation={true} modules={[Navigation]} className="mySwiper">
+            {/* REPETITION DATA START*/}
+            <SwiperSlide>
+              <ImageContainer>
+                <ImageBig src="https://m.media-amazon.com/images/M/MV5BMzZjY2IwNjMtZTQwMS00MjE0LTlmYzgtNzVhNDBhZjdlM2NjXkEyXkFqcGdeQWRpZWdtb25n._V1_.jpg" alt="" />
+                <ImageOverlay>
+                  <ImageSmall src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt="" />
+                  <ImageBookmark>
+                    <ImagePlus/>
+                  </ImageBookmark>
+                  <ImageName>
+                    <ImageCircle>
+                      <ImagePlay className="image_play"/>
+                    </ImageCircle>
+                    <ImageTitles>
+                      <ImageTitle>Al Pacino Return "Hunters"</ImageTitle>
+                      <ImageSubTitle>Watch the Final Season Trailer</ImageSubTitle>
+                    </ImageTitles>
+                    <ImageMinute>1:32</ImageMinute>
+                  </ImageName>
+                </ImageOverlay>  
+              </ImageContainer>
+            </SwiperSlide>
+            <SwiperSlide>
+              <ImageContainer>
+                <ImageBig src="https://m.media-amazon.com/images/M/MV5BMzZjY2IwNjMtZTQwMS00MjE0LTlmYzgtNzVhNDBhZjdlM2NjXkEyXkFqcGdeQWRpZWdtb25n._V1_.jpg" alt="" />
+                <ImageOverlay>
+                  <ImageSmall src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt="" />
+                  <ImageBookmark>
+                    <ImagePlus/>
+                  </ImageBookmark>
+                  <ImageName>
+                    <ImageCircle>
+                      <ImagePlay className="image_play"/>
+                    </ImageCircle>
+                    <ImageTitles>
+                      <ImageTitle>Al Pacino Return "Hunters"</ImageTitle>
+                      <ImageSubTitle>Watch the Final Season Trailer</ImageSubTitle>
+                    </ImageTitles>
+                    <ImageMinute>1:32</ImageMinute>
+                  </ImageName>
+                </ImageOverlay>  
+              </ImageContainer>
+            </SwiperSlide>
+            {/* REPETITION DATA STOP*/}
+          </StyledSwiper>
+          
+        
         </HomeLeftContainer>
-        <HomeRightContainer>
 
+        <HomeRightContainer>
+          <RightUpcoming>Up next</RightUpcoming>
+          <ListsContainer>
+
+            {/* REPETITION DATA START*/}
+            <ListBox>
+              <ListImage src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt=""/>
+              <ListItems>
+                <ListAttributes>
+                  <ListCircle className="list_circle">
+                    <ListPlay className="list_play"/>
+                  </ListCircle>
+                  <ListMinute>1:32</ListMinute>
+                </ListAttributes>
+                <ListTitle>Al Pacino Return "Hunters"</ListTitle>
+                <ListSubTitle>Watch the Final Season Trailer</ListSubTitle>
+              </ListItems>
+            </ListBox>
+            <ListBox>
+              <ListImage src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt=""/>
+              <ListItems>
+                <ListAttributes>
+                  <ListCircle className="list_circle">
+                    <ListPlay className="list_play"/>
+                  </ListCircle>
+                  <ListMinute>1:32</ListMinute>
+                </ListAttributes>
+                <ListTitle>Al Pacino Return "Hunters" aaaaaaa asd asd asd</ListTitle>
+                <ListSubTitle>Watch the Final Season Trailer</ListSubTitle>
+              </ListItems>
+            </ListBox>
+            <ListBox>
+              <ListImage src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt=""/>
+              <ListItems>
+                <ListAttributes>
+                  <ListCircle className="list_circle">
+                    <ListPlay className="list_play"/>
+                  </ListCircle>
+                  <ListMinute>1:32</ListMinute>
+                </ListAttributes>
+                <ListTitle>Al Pacino Return "Hunters" aaaaaaa asd asd asd</ListTitle>
+                <ListSubTitle>Watch the Final Season Trailer</ListSubTitle>
+              </ListItems>
+            </ListBox>
+            {/* REPETITION DATA STOP*/}
+
+            <ListFooter>Browse Trailer</ListFooter>
+          </ListsContainer>
         </HomeRightContainer>
     </HomeContainer>
   )

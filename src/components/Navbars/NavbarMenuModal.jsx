@@ -11,6 +11,7 @@ const MenuModal= styled.nav`
     align-items: center;
     gap: 2rem;
     width: 100%;
+    height: 100%;
     position: fixed; 
     top: 0;
     left: 0;
