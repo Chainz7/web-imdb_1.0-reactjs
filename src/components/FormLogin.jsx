@@ -8,81 +8,105 @@ const LoginBody = styled.div`
     background: #FFFFFF;
     color: black;
 `
-const LoginContainer = styled.div`
+const LoginBackground = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: .8rem;
+  gap: .8rem;
+  width: 100%;
+  height: 100%;
 `
 const LoginImage = styled.img.attrs({
     className: 'my-class',
   })`
-    width: 5rem;
-    height: 5rem;
-  `
-const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 107px;
+  height: 52px;
+  cursor: pointer;
+ `
+const LoginContainer = styled.div`
+  display: grid;
+  justify-items: start;
   align-items: center;
-  width: 300px;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
+  gap: .8rem;
+  padding: 1.5rem;
+  width: 19rem;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: .3rem;
 `
 
 const FormTitle = styled.h2`
   margin: 0;
-  margin-bottom: 10px;
-  text-align: center;
+  font-weight: 400;
+  font-size: 1.75rem;
 `
-
-const FormInput = styled.input`
+const LoginForm = styled.form.attrs({
+    className: 'my-class',
+  })`
   width: 100%;
+  height: 100%;
+ `
+const FormInput = styled.input`
+  width: 93%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
 `
-
 const FormButton = styled.button`
   width: 100%;
   padding: 10px;
-  border: none;
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 5px;
-  background-color: #333;
-  color: #fff;
-  font-weight: bold;
+  background: linear-gradient(0deg, rgba(212,171,71,1) 0%, rgba(254,227,164,1) 100%);
+  color: black;
   cursor: pointer;
+  &:hover {
+    border: 1px solid rgba(0,0,0,0.4);
+    background: linear-gradient(0deg, rgba(247,191,51,1) 0%, rgba(212,171,71,1) 100%);
+  }
 `
-
+const LoginLabel = styled.label.attrs({
+    className: 'my-class',
+})`
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 13px;
+`
+const LoginForget = styled.span`
+    font-weight: 400;
+    font-size: 13px;
+    cursor: pointer;
+    color: #0066c0;
+    &:hover {
+        color: #c45500; 
+    }
+`
 function FormLogin() {
   return (
     <LoginBody>
-        <LoginContainer>
+        <LoginBackground>
             <LoginImage src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png" alt="IMD"/>
-            <FormWrapper>
-                <FormTitle>Login</FormTitle>
-                <form>
-                    <label>
-                    Username:
-                    <FormInput
-                        type="text"
-                        
-                    />
-                    </label>
+            <LoginContainer>
+                <FormTitle>Sign in</FormTitle>
+                <LoginForm>
+                    <LoginLabel>
+                        <span>Email</span> 
+                    </LoginLabel>
+                    <FormInput type="email"/>
                     <br />
-                    <label>
-                    Password:
-                    <FormInput
-                        type="password"
-                        
-                    />
-                    </label>
+                    <LoginLabel>
+                        <span>Password</span> 
+                        <LoginForget> Forgot your password?</LoginForget> 
+                    </LoginLabel>
+                    <FormInput type="password"/>
                     <br />
-                    <FormButton type="submit">Log In</FormButton>
-                </form>
-            </FormWrapper>
-        </LoginContainer>
+                    <br />
+                    <FormButton type="submit">Sign In</FormButton>
+                </LoginForm>
+            </LoginContainer>
+        </LoginBackground>
     </LoginBody>
   )
 }
