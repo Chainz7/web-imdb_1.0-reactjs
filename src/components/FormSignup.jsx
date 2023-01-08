@@ -75,20 +75,11 @@ const LoginLabel = styled.label.attrs({
     font-weight: 700;
     font-size: 13px;
 `
-const LoginForget = styled.span`
-    font-weight: 400;
-    font-size: 13px;
-    cursor: pointer;
-    color: #0066c0;
-    &:hover {
-        color: #c45500; 
-    }
-`
 const LoginNew = styled.span`
     font-weight: 400;
     font-size: 13px;
     color: #CCCCCC;
-    margin-left: 6.8rem;
+    margin-left: 5.2rem;
 `
 const LoginButton = styled.button`
   width: 100%;
@@ -101,7 +92,13 @@ const LoginButton = styled.button`
     color: black;
     cursor: pointer;
 `
-function FormLogin() {
+const FormPassReq = styled.div`
+    font-weight: 400;
+    font-size: 11px;
+    margin-top: -.2rem;
+    margin-bottom: -.4rem;
+`
+function FormSignup() {
   return (
     <LoginBody>
         <LoginBackground>
@@ -109,26 +106,34 @@ function FormLogin() {
               <LoginImage src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png" alt="IMD"/>
             </Link>
             <LoginContainer>
-                <FormTitle>Sign in</FormTitle>
+                <FormTitle>Create account</FormTitle>
                 <LoginForm>
+                    <LoginLabel>
+                        <span>Your name</span> 
+                    </LoginLabel>
+                    <FormInput type="text" placeholder='First and last name'/>
+                    <br />
                     <LoginLabel>
                         <span>Email</span> 
                     </LoginLabel>
-                    <FormInput type="email"/>
+                    <FormInput type="email" />
                     <br />
                     <LoginLabel>
                         <span>Password</span> 
-                        <Link to="/login" className='navbar_link'>
-                          <LoginForget> Forgot your password?</LoginForget> 
-                        </Link>
+                    </LoginLabel>
+                    <FormInput type="password" placeholder='at least 8 characters'/>
+                    <FormPassReq>Passwords must be at least 8 characters.</FormPassReq>
+                    <br />
+                    <LoginLabel>
+                        <span>Re-enter password</span> 
                     </LoginLabel>
                     <FormInput type="password"/>
                     <br />
                     <br />
-                    <FormButton type="submit">Sign In</FormButton>
-                      <LoginNew>New to IMDb?</LoginNew>
-                      <Link to="/signup" className='navbar_link'>
-                        <LoginButton>Create your IMDb Account</LoginButton>
+                    <FormButton type="submit">Create your IMDb Account</FormButton>
+                      <LoginNew>Already have an account?</LoginNew>
+                      <Link to="/login" className='navbar_link'>
+                        <LoginButton>Sign In</LoginButton>
                       </Link>
                 </LoginForm>
             </LoginContainer>
@@ -137,4 +142,4 @@ function FormLogin() {
   )
 }
 
-export default FormLogin
+export default FormSignup

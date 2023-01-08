@@ -245,11 +245,13 @@ const Navbar = () => {
         Watchlist
       </NavbarWatchlist>
       </a>
+      <Link to="/login" className='navbar_link'>
       <a className='navbar__menu' href="#">
         <NavbarSignin>
-          <Link to="/login" className='navbar_link'>Sign In</Link>
+          Sign In
         </NavbarSignin>
       </a>
+      </Link>
       <a className='navbar__menu' href="#">
         <NavbarLanguange>
           EN <NavbarTriangleTwo></NavbarTriangleTwo>
