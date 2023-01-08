@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import FormSignup from '../FormSignup'
+import FormSignup from './Auth/FormSignup'
 
 function Signup() {
   return (
