@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
@@ -224,6 +224,16 @@ const FeaturedRecomendation = styled.div`
 `
 
 function HomeFeatured() {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:8000/movies')
+      const json = await response.json()
+      setData(json)
+    }
+    fetchData()
+  }, [])
   return (
     <HomeContainer>
         <FeaturedTitle>Featured Today</FeaturedTitle>
@@ -241,6 +251,8 @@ function HomeFeatured() {
             navigation={true}
             modules={[Pagination, Navigation]}
             className="mySwiper">
+            {console.log(data.data)}
+            {data.data.map((item) => (  
                 <SwiperSlide>
                     <FeaturedItem>
                         <ItemOverlay>
@@ -252,11 +264,11 @@ function HomeFeatured() {
                         <ItemTitles>
                             <ItemStars>
                                 <ItemYellowStar/>
-                                <ItemRating>9.5</ItemRating>
+                                <ItemRating key={item.id}>{item.rating}</ItemRating>
                                 <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
                             </ItemStars>
                             <ItemTitleContainer>
-                                <ItemTitle>Mayfair Witches</ItemTitle>
+                                <ItemTitle key={item.id}>{item.title}</ItemTitle>
                             </ItemTitleContainer>
                             <ItemButtons>
                                 <ItemWatchContainer>
@@ -269,146 +281,7 @@ function HomeFeatured() {
                         </ItemTitles>
                     </FeaturedItem>
                 </SwiperSlide>
-                <SwiperSlide>
-                    <FeaturedItem>
-                        <ItemOverlay>
-                            <ItemImage src='https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1' />
-                            <ItemBookmark>
-                                <ItemPlus/>
-                            </ItemBookmark>
-                        </ItemOverlay>
-                        <ItemTitles>
-                            <ItemStars>
-                                <ItemYellowStar/>
-                                <ItemRating>9.5</ItemRating>
-                                <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
-                            </ItemStars>
-                            <ItemTitleContainer>
-                                <ItemTitle>Mayfair Witches</ItemTitle>
-                            </ItemTitleContainer>
-                            <ItemButtons>
-                                <ItemWatchContainer>
-                                    <ItemWatch>Watch Now</ItemWatch>
-                                </ItemWatchContainer>
-                                <ItemTrailerContainer>
-                                    <ItemTrailer>Trailer</ItemTrailer>
-                                </ItemTrailerContainer>
-                            </ItemButtons>
-                        </ItemTitles>
-                    </FeaturedItem>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <FeaturedItem>
-                        <ItemOverlay>
-                            <ItemImage src='https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1' />
-                            <ItemBookmark>
-                                <ItemPlus/>
-                            </ItemBookmark>
-                        </ItemOverlay>
-                        <ItemTitles>
-                            <ItemStars>
-                                <ItemYellowStar/>
-                                <ItemRating>9.5</ItemRating>
-                                <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
-                            </ItemStars>
-                            <ItemTitleContainer>
-                                <ItemTitle>Mayfair Witches</ItemTitle>
-                            </ItemTitleContainer>
-                            <ItemButtons>
-                                <ItemWatchContainer>
-                                    <ItemWatch>Watch Now</ItemWatch>
-                                </ItemWatchContainer>
-                                <ItemTrailerContainer>
-                                    <ItemTrailer>Trailer</ItemTrailer>
-                                </ItemTrailerContainer>
-                            </ItemButtons>
-                        </ItemTitles>
-                    </FeaturedItem>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <FeaturedItem>
-                        <ItemOverlay>
-                            <ItemImage src='https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1' />
-                            <ItemBookmark>
-                                <ItemPlus/>
-                            </ItemBookmark>
-                        </ItemOverlay>
-                        <ItemTitles>
-                            <ItemStars>
-                                <ItemYellowStar/>
-                                <ItemRating>9.5</ItemRating>
-                                <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
-                            </ItemStars>
-                            <ItemTitleContainer>
-                                <ItemTitle>Mayfair Witches</ItemTitle>
-                            </ItemTitleContainer>
-                            <ItemButtons>
-                                <ItemWatchContainer>
-                                    <ItemWatch>Watch Now</ItemWatch>
-                                </ItemWatchContainer>
-                                <ItemTrailerContainer>
-                                    <ItemTrailer>Trailer</ItemTrailer>
-                                </ItemTrailerContainer>
-                            </ItemButtons>
-                        </ItemTitles>
-                    </FeaturedItem>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <FeaturedItem>
-                        <ItemOverlay>
-                            <ItemImage src='https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1' />
-                            <ItemBookmark>
-                                <ItemPlus/>
-                            </ItemBookmark>
-                        </ItemOverlay>
-                        <ItemTitles>
-                            <ItemStars>
-                                <ItemYellowStar/>
-                                <ItemRating>9.5</ItemRating>
-                                <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
-                            </ItemStars>
-                            <ItemTitleContainer>
-                                <ItemTitle>Mayfair Witches</ItemTitle>
-                            </ItemTitleContainer>
-                            <ItemButtons>
-                                <ItemWatchContainer>
-                                    <ItemWatch>Watch Now</ItemWatch>
-                                </ItemWatchContainer>
-                                <ItemTrailerContainer>
-                                    <ItemTrailer>Trailer</ItemTrailer>
-                                </ItemTrailerContainer>
-                            </ItemButtons>
-                        </ItemTitles>
-                    </FeaturedItem>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <FeaturedItem>
-                        <ItemOverlay>
-                            <ItemImage src='https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1' />
-                            <ItemBookmark>
-                                <ItemPlus/>
-                            </ItemBookmark>
-                        </ItemOverlay>
-                        <ItemTitles>
-                            <ItemStars>
-                                <ItemYellowStar/>
-                                <ItemRating>9.5</ItemRating>
-                                <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
-                            </ItemStars>
-                            <ItemTitleContainer>
-                                <ItemTitle>Mayfair Witches</ItemTitle>
-                            </ItemTitleContainer>
-                            <ItemButtons>
-                                <ItemWatchContainer>
-                                    <ItemWatch>Watch Now</ItemWatch>
-                                </ItemWatchContainer>
-                                <ItemTrailerContainer>
-                                    <ItemTrailer>Trailer</ItemTrailer>
-                                </ItemTrailerContainer>
-                            </ItemButtons>
-                        </ItemTitles>
-                    </FeaturedItem>
-                </SwiperSlide>
+            ))}
             </StyledSwiper>
         </FeaturedItems>
         <FeaturedRecomendations>
