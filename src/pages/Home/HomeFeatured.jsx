@@ -11,7 +11,6 @@ import { orangeOneColor, blackTwoColor, orangeTwoColor } from '../../assets/vari
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const HomeContainer = styled.div`
   display: grid;
