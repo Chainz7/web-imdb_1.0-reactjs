@@ -13,7 +13,7 @@ const LoginBackground = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: .8rem;
+  margin-top: 3.5rem;
   gap: .8rem;
   width: 100%;
   height: 100%;
@@ -58,13 +58,13 @@ const FormButton = styled.button`
   padding: 10px;
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 3px;
-  background: linear-gradient(0deg, rgba(212,171,71,1) 0%, rgba(254,227,164,1) 100%);
+  background: linear-gradient(0deg, rgba(212,171,71,1) 0%, #f5c518 100%);
   color: black;
   cursor: pointer;
   margin-bottom: .8rem;
   &:hover {
     border: 1px solid rgba(0,0,0,0.4);
-    background: linear-gradient(0deg, rgba(247,191,51,1) 0%, rgba(212,171,71,1) 100%);
+    background: linear-gradient(0deg, rgba(247,191,51,1) 0%, #f5c518 100%);
   }
 `
 const LoginLabel = styled.label.attrs({
