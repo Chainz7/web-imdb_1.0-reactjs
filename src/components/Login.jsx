@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import FormLogin from '../FormLogin'
+import FormLogin from './Auth/FormLogin'
 
 function Login() {
   return (
