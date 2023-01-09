@@ -86,7 +86,7 @@ const ItemBookmark = styled.div`
   align-items: center;
   width: 0;
   height: 3rem;
-  margin-left: -234px;
+  margin-left: -238px;
   border-left: 22px solid ${blackTwoColor};
   border-right: 22px solid ${blackTwoColor};
   border-bottom: 14px solid transparent;
