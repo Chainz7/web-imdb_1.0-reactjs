@@ -3,6 +3,7 @@
         "response_key": "SUCCESS",
         "data": [
           {
+            "id": 1,
             "title": "Avenger Endgame",
             "description": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
             "release_year": "2019",
@@ -17,11 +18,12 @@
             ]
           },
           {
+            "id": 2,
             "title": "Top Gun Maverick",
             "description": "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN's elite graduates on a mission that demands the ultimate sacrifice from those chosen to fly it.",
             "release_year": "2022",
             "age_rate": "PG-13",
-            "rating": "8,8",
+            "rating": "8.8",
             "cover_picture_url": "https://posters.movieposterdb.com/22_05/2020/1745960/l_1745960_cc176006.jpg",
             "duration": "2h 20m",
             "genres": [
@@ -30,17 +32,48 @@
             ]
           },
           {
+            "id": 3,
             "title": "Avatar",
             "description": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
             "release_year": "2009",
             "age_rate": "17+",
-            "rating": "9,1",
+            "rating": "9.1",
             "cover_picture_url": "https://posters.movieposterdb.com/09_11/2009/499549/l_499549_db0e85bb.jpg",
             "duration": "2h 42m",
             "genres": [
               "Action",
               "Drama",
               "Sci-Fi",
+              "Adventure"
+            ]
+          },
+          {
+            "id": 4,
+            "title": "Interstellar",
+            "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+            "release_year": "2014",
+            "age_rate": "R",
+            "rating": "8.6",
+            "cover_picture_url": "https://posters.movieposterdb.com/15_03/2014/816692/l_816692_284eb9d5.jpg",
+            "duration": "2h 49m",
+            "genres": [
+              "Drama",
+              "Sci-Fi",
+              "Adventure"
+            ]
+          },
+          {
+            "id": 5,
+            "title": "The Dark Knight",
+            "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+            "release_year": "2008",
+            "age_rate": "17+",
+            "rating": "9.3",
+            "cover_picture_url": "https://posters.movieposterdb.com/08_05/2008/468569/l_468569_f0e2cd63.jpg",
+            "duration": "2h 32m",
+            "genres": [
+              "Drama",
+              "Crime",
               "Adventure"
             ]
           }

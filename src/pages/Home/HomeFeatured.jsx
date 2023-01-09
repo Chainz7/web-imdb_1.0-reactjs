@@ -11,6 +11,7 @@ import { orangeOneColor, blackTwoColor, orangeTwoColor } from '../../assets/vari
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { Constant } from '../../constant/appConstant';
 
 const HomeContainer = styled.div`
   display: grid;
@@ -230,10 +231,16 @@ function HomeFeatured() {
     async function fetchData() {
       const response = await fetch('http://localhost:8000/movies')
       const json = await response.json()
-      setData(json)
+
+      if (Constant.SUCCESS == json.response_key) {
+        setData(json.data)
+        console.log(data);
+      }
     }
+
     fetchData()
   }, [])
+
   return (
     <HomeContainer>
         <FeaturedTitle>Featured Today</FeaturedTitle>
@@ -241,7 +248,7 @@ function HomeFeatured() {
             <StyledSwiper 
             slidesPerView={5}
             spaceBetween={30}
-            slidesPerGroup={3}
+            slidesPerGroup={1}
             loop={true}
             loopFillGroupWithBlank={true}
             pagination={{
@@ -251,12 +258,11 @@ function HomeFeatured() {
             navigation={true}
             modules={[Pagination, Navigation]}
             className="mySwiper">
-            {console.log(data.data)}
-            {data.data.map((item) => (  
-                <SwiperSlide>
+            {data.map((item) => (  
+                <SwiperSlide key={item.id}>
                     <FeaturedItem>
                         <ItemOverlay>
-                            <ItemImage src='https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1' />
+                            <ItemImage src={item.cover_picture_url} />
                             <ItemBookmark>
                                 <ItemPlus/>
                             </ItemBookmark>
@@ -264,11 +270,11 @@ function HomeFeatured() {
                         <ItemTitles>
                             <ItemStars>
                                 <ItemYellowStar/>
-                                <ItemRating key={item.id}>{item.rating}</ItemRating>
+                                <ItemRating>{item.rating}</ItemRating>
                                 <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
                             </ItemStars>
                             <ItemTitleContainer>
-                                <ItemTitle key={item.id}>{item.title}</ItemTitle>
+                                <ItemTitle>{item.title}</ItemTitle>
                             </ItemTitleContainer>
                             <ItemButtons>
                                 <ItemWatchContainer>
