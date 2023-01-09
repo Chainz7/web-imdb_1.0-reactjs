@@ -12,8 +12,8 @@ const HomeContainer = styled.div`
 function Home() {
   return (
     <HomeContainer>
-      <HomeDashboard></HomeDashboard>
-      <HomeFeatured></HomeFeatured>
+      <HomeDashboard />
+      <HomeFeatured />
     </HomeContainer>
   )
 }
