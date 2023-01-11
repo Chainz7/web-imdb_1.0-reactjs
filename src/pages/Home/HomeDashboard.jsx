@@ -64,7 +64,7 @@ const ImageBookmark = styled.div`
   justify-content: center;
   align-items: center;
   width: 0;
-  height: 2.5rem;
+  height: 2.45rem;
   margin-bottom: 177px;
   margin-left: -186px;
   border-left: 20px solid ${blackTwoColor};

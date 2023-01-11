@@ -44,29 +44,8 @@ img {
     }
 }
 
-li {
-    list-style: none;
-}
-
-li:before {
-    content: "•";
-    font-size: 12px;
-    vertical-align: middle;
-    padding-right: 10px;
-    margin-left: -7px;
-}
-
-.li_left:before {
-    content: "";
-    margin-left: -10px;
-}
-
-.li_right:before {
-    content: "•";
-    font-size: 12px;
-    vertical-align: middle;
-    padding-right: 10px;
-    margin-left: 1px;
+.watchlist {
+    pointer-events : none;
 }
 
 .modal-enter {
@@ -85,4 +64,4 @@ li:before {
 .modal-exit-active {
     opacity: 0;
     transition: opacity 60ms;
-}
+} 

@@ -33,12 +33,12 @@ const FeaturedTitle = styled.div`
   width: 81.5rem;
 `
 const FeaturedItems = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 0.2rem;
-    width: 81.5rem;
-    height: 32rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 0.2rem;
+  width: 81.5rem;
+  height: 32rem;
 `
 const FeaturedItem = styled.div`
   display: grid;
@@ -69,20 +69,20 @@ const StyledSwiper = styled(Swiper)`
   }
 `
 const ItemOverlay = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 81.5rem;
-    height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 81.5rem;
+  height: 100%;
 `
 const ItemImage = styled.img.attrs({
-    className: 'my-class',
+  className: 'my-class',
   })`
-    object-fit: cover;
-    width: 14.8rem;
-    height: 100%;
-    border-radius: .25rem;
-    cursor: pointer;
+  object-fit: cover;
+  width: 14.8rem;
+  height: 100%;
+  border-radius: .25rem;
+  cursor: pointer;
 `
 const ItemBookmark = styled.div`
   display: flex;
@@ -90,10 +90,11 @@ const ItemBookmark = styled.div`
   align-items: center;
   width: 0;
   height: 3rem;
-  margin-left: -238px;
+  margin-left: -237px;
   border-left: 22px solid ${blackTwoColor};
   border-right: 22px solid ${blackTwoColor};
   border-bottom: 14px solid transparent;
+  border-radius: 2px 0 0 0;
   opacity: .6;
   cursor: pointer;
   &:hover {
@@ -261,10 +262,16 @@ const InfoModalState = styled.div`
 
 function HomeFeatured() {
   const [isModalInfoOpen, setIsModalInfoOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null) // state untuk menyimpan movie yang dipilih
 
   const InfoModalClose = () => {
     setIsModalInfoOpen(false);
   }
+  const handleMovieClick = (movie) => {
+    setSelectedMovie(movie)
+    setIsModalInfoOpen(true)
+  }
+  
 
   const [data, setData] = useState([])
 
@@ -299,11 +306,11 @@ function HomeFeatured() {
             navigation={true}
             modules={[Pagination, Navigation]}
             className="mySwiper">
-            {data.map((item) => (  
-                <SwiperSlide key={item.id}>
+            {data.map((movie) => (  
+                <SwiperSlide key={movie.id}>
                     <FeaturedItem>
                         <ItemOverlay>
-                            <ItemImage src={item.cover_picture_url} />
+                            <ItemImage src={movie.cover_picture_url} />
                             <ItemBookmark>
                                 <ItemPlus/>
                             </ItemBookmark>
@@ -311,11 +318,11 @@ function HomeFeatured() {
                         <ItemTitles>
                             <ItemStars>
                                 <ItemYellowStar/>
-                                <ItemRating>{item.rating}</ItemRating>
+                                <ItemRating>{movie.rating}</ItemRating>
                                 <ItemBlueStar><BlueStar className='blue_star'/></ItemBlueStar>
                             </ItemStars>
                             <ItemTitleContainer>
-                                <ItemTitle>{item.title}</ItemTitle>
+                                <ItemTitle>{movie.title}</ItemTitle>
                             </ItemTitleContainer>
                             <ItemButtons>
                                 <ItemWatchContainer>
@@ -324,7 +331,7 @@ function HomeFeatured() {
                                 <ItemTrailerContainer>
                                   <ItemTrailers>
                                     <ItemTrailer>Trailer</ItemTrailer>
-                                    <ItemInfos onClick={() => setIsModalInfoOpen(true)}>
+                                    <ItemInfos onClick={() => handleMovieClick(movie)}>
                                       <InfoIcon/>
                                     </ItemInfos>
                                   </ItemTrailers>
@@ -336,13 +343,13 @@ function HomeFeatured() {
             ))}
             </StyledSwiper>
             <CSSTransition
-            in={isModalInfoOpen}
-            timeout={60}
-            classNames="modal"
-            unmountOnExit
-          >
-            <InfoModalState isOpen={isModalInfoOpen}>
-              <FeaturedInfoModal onClose={InfoModalClose}/>
+              in={isModalInfoOpen}
+              timeout={60}
+              classNames="modal"
+              unmountOnExit
+            >
+            <InfoModalState isOpen={isModalInfoOpen}>  
+              <FeaturedInfoModal onClose={InfoModalClose} movie={selectedMovie}/>
             </InfoModalState>
             </CSSTransition>
         </FeaturedItems>

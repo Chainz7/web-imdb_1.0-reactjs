@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Constant } from '../../constant/appConstant';
 
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -55,10 +56,16 @@ const InfoModalTitle = styled.span`
   line-height: 28.8px;
 `
 const InfoModalSubTitles = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
+`
+const InfoModalSubtitlesGenres = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
 `
 const InfoModalSubtitle = styled.div`
   color: rgba(255, 255, 255, 0.7);
@@ -138,7 +145,7 @@ const InfoModalWatchContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 78%;
-  padding: 0.45rem;
+  padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: .25rem;
   cursor: pointer;
@@ -165,30 +172,58 @@ const InfoModalDislikeContainer = styled.div`
     transition: all 0.2s ease-in-out;
   }
 `
+
 const InfoModalDislikes = styled(InfoModalDislike)({
   color: '#5695e9',
 });
 function FeaturedInfoModal(props) {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, movie } = props;
+
+  const handleContainerClick = () => {
+    setData(null) // menghapus data selectedMovie saat modal ditutup
+    onClose()
+  }
+  
+  const handleInsideContainerClick = (e) => {
+    e.stopPropagation()
+    // your logic for adding to watchlist
+  }  
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:8000/movies')
+      const json = await response.json()
+
+      if (Constant.SUCCESS == json.response_key) {
+        setData(json.data)
+        console.log(data);
+      }
+    }
+
+    fetchData()
+  }, [])
 
   return (
-    <InfoModalPosition isOpen={isOpen} onClick={onClose}>
-      <InfoModalContainer>
+    <InfoModalPosition isOpen={isOpen} onClick={handleContainerClick}>
+      <InfoModalContainer onClick={(e) => e.stopPropagation()}>
           <InfoModalFirstRows>
-            <InfoModalImage src='https://m.media-amazon.com/images/M/MV5BMzZjY2IwNjMtZTQwMS00MjE0LTlmYzgtNzVhNDBhZjdlM2NjXkEyXkFqcGdeQWRpZWdtb25n._V1_.jpg'/>
+            <InfoModalImage src={movie.cover_picture_url}/>
             <InfoModalTitles>
-                <InfoModalTitle>Black Adam</InfoModalTitle>
+                <InfoModalTitle>{movie.title}</InfoModalTitle>
                 <InfoModalSubTitles>
-                  <InfoModalSubtitle><li className='li_left'>2022</li></InfoModalSubtitle>
-                  <InfoModalSubtitle><li>2022</li></InfoModalSubtitle>
-                  <InfoModalSubtitle><li className='li_right'>2022</li></InfoModalSubtitle>
-                  <InfoModalSubtitle><li className='li_left'>2022</li></InfoModalSubtitle>
-                  <InfoModalSubtitle><li>2022</li></InfoModalSubtitle>
-                  <InfoModalSubtitle><li className='li_right'>2022</li></InfoModalSubtitle>
+                  <InfoModalSubtitle>{movie.release_year}</InfoModalSubtitle>
+                  <InfoModalSubtitle>{movie.duration}</InfoModalSubtitle>
+                  <InfoModalSubtitle>{movie.age_rate}</InfoModalSubtitle>
                 </InfoModalSubTitles>
+                <InfoModalSubtitlesGenres>
+                  {movie.genres.map((item) => (  
+                    <InfoModalSubtitle>{item}</InfoModalSubtitle>
+                  ))}
+                </InfoModalSubtitlesGenres>
                 <InfoModalRatingContainer>
                   <InfoModalRatingYStar sx={{ fontSize: "18px" }}/>
-                  <InfoModalRating>7.3 / 10</InfoModalRating>
+                  <InfoModalRating>{movie.rating} / 10</InfoModalRating>
                   <InfoModalRatingBStarContainer>
                     <InfoModalRatingBStar sx={{ fontSize: "18px" }} className='blue_star'/>
                     <InfoModalRatingRate className='blue_rate'>Rate</InfoModalRatingRate>
@@ -197,7 +232,7 @@ function FeaturedInfoModal(props) {
             </InfoModalTitles>
           </InfoModalFirstRows>
           <InfoModalSecondRows>
-            <InfoModalDescription>asdasdasd asdasdasd aaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaa</InfoModalDescription>
+            <InfoModalDescription>{movie.description}</InfoModalDescription>
           </InfoModalSecondRows>
           <InfoModalThirdRows>
             <InfoModalWatchContainer>
