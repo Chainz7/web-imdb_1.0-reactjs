@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/authSlice';
 
 const LoginBody = styled.div`
     width: 100%;
@@ -34,7 +36,6 @@ const LoginContainer = styled.div`
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: .3rem;
 `
-
 const FormTitle = styled.h2`
   margin: 0;
   font-weight: 400;
@@ -102,6 +103,13 @@ const LoginButton = styled.button`
     cursor: pointer;
 `
 function FormLogin() {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { email, password } = e.target.elements;
+    dispatch(login({ email: email.value, password: password.value }));
+  };
   return (
     <LoginBody>
         <LoginBackground>
@@ -110,11 +118,11 @@ function FormLogin() {
             </Link>
             <LoginContainer>
                 <FormTitle>Sign in</FormTitle>
-                <LoginForm>
+                <LoginForm onSubmit={handleSubmit}>
                     <LoginLabel>
                         <span>Email</span> 
                     </LoginLabel>
-                    <FormInput type="email"/>
+                    <FormInput name='email' type="email"/>
                     <br />
                     <LoginLabel>
                         <span>Password</span> 
@@ -122,7 +130,7 @@ function FormLogin() {
                           <LoginForget> Forgot your password?</LoginForget> 
                         </Link>
                     </LoginLabel>
-                    <FormInput type="password"/>
+                    <FormInput name='password' type="password"/>
                     <br />
                     <br />
                     <FormButton type="submit">Sign In</FormButton>

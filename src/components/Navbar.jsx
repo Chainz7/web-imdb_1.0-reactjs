@@ -6,6 +6,8 @@ import MenuModal from './Navbars/MenuModal'
 import IMDbModal from './Navbars/ProModal'
 import FormSearchLogo from '@mui/icons-material/Search';
 import { whiteOneColor, blackTwoColor } from '../assets/variables'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../store/authSlice';
 
 const NavbarContainer = styled.nav`
   font-size: 14px;
@@ -214,11 +216,18 @@ const LanguangeTriangle = styled.div`
   border-top: 6px solid ${whiteOneColor};
 `
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const email = useSelector(state => state.auth.email);
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   const [isModalMenuOpen, setIsModalMenuOpen] = useState(false);
   const [isModalIMDbOpen, setIsModalIMDbOpen] = useState(false);
   const location = useLocation()
   const isLoginOrSignup = location.pathname === '/login' || location.pathname === '/signup'
-
   const MenuModalClose = () => {
     setIsModalMenuOpen(false);
   }
@@ -262,12 +271,19 @@ const Navbar = () => {
         <WatchlistBookmark className='watchlist_bookmark'/>
         <WatchlistText>Watchlist</WatchlistText>
       </WatchlistContainer>
+      {isLoggedIn ? 
+      <button onClick={handleLogout}>Log Out</button>
+      : 
       <Link to="/login" className='link'>
         <SigninContainer>Sign In</SigninContainer>
       </Link>
+      }
+      {isLoggedIn ? 
       <LanguangeContainer>
-        EN <LanguangeTriangle/>
+        {email}
       </LanguangeContainer>
+      : null
+      }
     </NavbarContainer>
   )
 }
