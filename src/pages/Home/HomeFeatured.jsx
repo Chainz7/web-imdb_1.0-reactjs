@@ -277,10 +277,10 @@ function HomeFeatured() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:8000/movies')
+      const response = await fetch('http://localhost:8000/featured-today')
       const json = await response.json()
 
-      if (Constant.SUCCESS == json.response_key) {
+      if (Constant.SUCCESS === json.response_key) {
         setData(json.data)
         console.log(data);
       }
