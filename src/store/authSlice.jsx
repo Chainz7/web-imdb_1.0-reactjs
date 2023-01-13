@@ -5,15 +5,25 @@ export const authSlice = createSlice({
   initialState: {
     isLoggedIn: false,
     email: '',
+    error: '',
   },
   reducers: {
+    // login: (state, action) => {
+    //   state.isLoggedIn = true;
+    //   state.email = action.payload.email;
     login: (state, action) => {
-      state.isLoggedIn = true;
-      state.email = action.payload.email;
+      if (action.payload.email === 'cha@cha.com' && action.payload.password === '1234') {
+        state.isLoggedIn = true;
+        state.email = action.payload.email;
+        state.error = '';
+      } else {
+        state.error = 'Email atau password salah';
+      }
     },
     logout: state => {
       state.isLoggedIn = false;
       state.email = '';
+      state.error = '';
     },
   },
 });

@@ -21,7 +21,6 @@ const MenuModalContainer= styled.div`
     max-height: calc(100vh - 32px); 
     overflow-y: auto; 
     animation: slideDown 0.3s linear;
-    pointer-events: none;
 `
 const NavContainer = styled.div`
     pointer-events: auto;

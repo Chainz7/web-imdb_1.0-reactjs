@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import AddIcon from '@mui/icons-material/Add';
@@ -8,6 +8,7 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
+import { Constant } from '../../constant/appConstant';
 import { whiteOneColor, orangeOneColor, orangeTwoColor, blackTwoColor } from '../../assets/variables'
 
 const HomeContainer = styled.div`
@@ -135,6 +136,9 @@ const ImageSubTitle = styled.div`
   font-size: 20px;
   line-height: 24px;
   color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  width: 440px;
+  height: 25px;
 `
 const ImageMinute = styled.div`
   font-weight: 400;
@@ -176,7 +180,6 @@ const ListBox = styled.div`
   width: 100%;
   cursor: pointer;
   &:hover {
-    color: rgba(255, 255, 255, 0.7);
     transition: all 0.2s ease-in-out;
     .list_circle {
       border: 1.5px solid ${orangeOneColor};
@@ -248,6 +251,9 @@ const ListSubTitle = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  width: 100%;
+  height: 20px;
 `
 const ListFooter = styled.div`
   font-weight: 600;
@@ -279,18 +285,38 @@ const StyledSwiper = styled(Swiper)`
 `
 
 function HomeDashboard() {
+  
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:8000/movies')
+      const json = await response.json()
+
+      if (Constant.SUCCESS == json.response_key) {
+        setData(json.data)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  const sorted = data;
+  
+  sorted.sort((a, b) => new Date(b.release_year) - new Date(a.release_year));
+
   return (
     <HomeContainer>
-
         <HomeLeftContainer>
           
           <StyledSwiper navigation={true} modules={[Navigation]} className="mySwiper">
             {/* REPETITION DATA START*/}
+            {sorted.slice(0, 3).map((movie) => ( 
             <SwiperSlide>
               <ImageContainer>
-                <ImageBig src="https://m.media-amazon.com/images/M/MV5BMzZjY2IwNjMtZTQwMS00MjE0LTlmYzgtNzVhNDBhZjdlM2NjXkEyXkFqcGdeQWRpZWdtb25n._V1_.jpg" alt="" />
+                <ImageBig src={movie.cover_picture_url} alt="" />
                 <ImageOverlay>
-                  <ImageSmall src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt="" />
+                  <ImageSmall src={movie.cover_picture_url} alt="" />
                   <ImageBookmark>
                     <ImagePlus/>
                   </ImageBookmark>
@@ -299,39 +325,18 @@ function HomeDashboard() {
                       <ImagePlay className="image_play"/>
                     </ImageCircle>
                     <ImageTitles>
-                      <ImageTitle>Al Pacino Return "Hunters"</ImageTitle>
-                      <ImageSubTitle>Watch the Final Season Trailer</ImageSubTitle>
+                      <ImageTitle>{movie.title}</ImageTitle>
+                      <ImageSubTitle>{movie.description}</ImageSubTitle>
                     </ImageTitles>
-                    <ImageMinute>1:32</ImageMinute>
+                    <ImageMinute>{movie.duration}</ImageMinute>
                   </ImageName>
                 </ImageOverlay>  
               </ImageContainer>
             </SwiperSlide>
-            <SwiperSlide>
-              <ImageContainer>
-                <ImageBig src="https://m.media-amazon.com/images/M/MV5BMzZjY2IwNjMtZTQwMS00MjE0LTlmYzgtNzVhNDBhZjdlM2NjXkEyXkFqcGdeQWRpZWdtb25n._V1_.jpg" alt="" />
-                <ImageOverlay>
-                  <ImageSmall src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt="" />
-                  <ImageBookmark>
-                    <ImagePlus/>
-                  </ImageBookmark>
-                  <ImageName>
-                    <ImageCircle>
-                      <ImagePlay className="image_play"/>
-                    </ImageCircle>
-                    <ImageTitles>
-                      <ImageTitle>Al Pacino Return "Hunters"</ImageTitle>
-                      <ImageSubTitle>Watch the Final Season Trailer</ImageSubTitle>
-                    </ImageTitles>
-                    <ImageMinute>1:32</ImageMinute>
-                  </ImageName>
-                </ImageOverlay>  
-              </ImageContainer>
-            </SwiperSlide>
+            ))}
             {/* REPETITION DATA STOP*/}
           </StyledSwiper>
           
-        
         </HomeLeftContainer>
 
         <HomeRightContainer>
@@ -339,45 +344,21 @@ function HomeDashboard() {
           <ListsContainer>
 
             {/* REPETITION DATA START*/}
+            {sorted.slice(0, 3).map((movie) => (  
             <ListBox>
-              <ListImage src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt=""/>
+              <ListImage src={movie.cover_picture_url} alt=""/>
               <ListItems>
                 <ListAttributes>
                   <ListCircle className="list_circle">
                     <ListPlay className="list_play"/>
                   </ListCircle>
-                  <ListMinute>1:32</ListMinute>
+                  <ListMinute>{movie.duration}</ListMinute>
                 </ListAttributes>
-                <ListTitle>Al Pacino Return "Hunters"</ListTitle>
-                <ListSubTitle>Watch the Final Season Trailer</ListSubTitle>
+                <ListTitle>{movie.title}</ListTitle>
+                <ListSubTitle>{movie.description}</ListSubTitle>
               </ListItems>
             </ListBox>
-            <ListBox>
-              <ListImage src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt=""/>
-              <ListItems>
-                <ListAttributes>
-                  <ListCircle className="list_circle">
-                    <ListPlay className="list_play"/>
-                  </ListCircle>
-                  <ListMinute>1:32</ListMinute>
-                </ListAttributes>
-                <ListTitle>Al Pacino Return "Hunters" aaaaaaa asd asd asd</ListTitle>
-                <ListSubTitle>Watch the Final Season Trailer</ListSubTitle>
-              </ListItems>
-            </ListBox>
-            <ListBox>
-              <ListImage src="https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2022/12/mayfair-1.png?ssl=1" alt=""/>
-              <ListItems>
-                <ListAttributes>
-                  <ListCircle className="list_circle">
-                    <ListPlay className="list_play"/>
-                  </ListCircle>
-                  <ListMinute>1:32</ListMinute>
-                </ListAttributes>
-                <ListTitle>Al Pacino Return "Hunters" aaaaaaa asd asd asd</ListTitle>
-                <ListSubTitle>Watch the Final Season Trailer</ListSubTitle>
-              </ListItems>
-            </ListBox>
+            ))}
             {/* REPETITION DATA STOP*/}
 
             <ListFooter>Browse Trailer</ListFooter>

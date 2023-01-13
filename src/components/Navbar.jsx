@@ -199,8 +199,8 @@ const LanguangeContainer = styled.div`
   align-items: center;
   gap: 0.4rem;
   padding: 0.48rem;
-  padding-left: 1rem;
-  padding-right: .6rem;
+  padding-left: .7rem;
+  padding-right: .7rem;
   border-radius: 0.2rem;
   cursor: pointer;
   &:hover {
@@ -208,13 +208,29 @@ const LanguangeContainer = styled.div`
     transition: all 0.1s ease-in-out;
   }
 `
-const LanguangeTriangle = styled.div`
-  margin-top: 0.1rem;
+const ButtonLogout = styled.div`
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.48rem;
+  padding-left: .7rem;
+  padding-right: .7rem;
   border-radius: 0.2rem;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid ${whiteOneColor};
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+  }
 `
+// const LanguangeTriangle = styled.div`
+//   margin-top: 0.1rem;
+//   border-radius: 0.2rem;
+//   border-left: 6px solid transparent;
+//   border-right: 6px solid transparent;
+//   border-top: 6px solid ${whiteOneColor};
+// `
 const Navbar = () => {
   const dispatch = useDispatch();
 
@@ -272,7 +288,7 @@ const Navbar = () => {
         <WatchlistText>Watchlist</WatchlistText>
       </WatchlistContainer>
       {isLoggedIn ? 
-      <button onClick={handleLogout}>Log Out</button>
+      <ButtonLogout onClick={handleLogout}>Logout</ButtonLogout>
       : 
       <Link to="/login" className='link'>
         <SigninContainer>Sign In</SigninContainer>

@@ -11,11 +11,11 @@ const HomeContainer = styled.div`
 `
 
 function Home() {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const email = useSelector(state => state.auth.email);
-  if (!isLoggedIn) {
-    return <h1>gagal bang</h1>;
-  } 
+  // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  // const email = useSelector(state => state.auth.email);
+  // if (!isLoggedIn) {
+  //   return <h1>gagal bang</h1>;
+  // } 
   return (
     <HomeContainer>
       <HomeDashboard />

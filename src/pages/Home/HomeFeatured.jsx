@@ -58,7 +58,7 @@ const StyledSwiper = styled(Swiper)`
     border: .5px solid white;
     border-radius: .25rem;
     padding: .5rem;
-    margin-top: -7.5rem;
+    margin-top: -8.5rem;
     margin-left: -.6rem;
     margin-right: -.6rem;
     &:hover {
@@ -132,6 +132,7 @@ const ItemRating = styled.div`
     font-size: 18px;
     line-height: 25px;
     color: rgba(255, 255, 255, 0.7);
+    margin-top: .2rem;
 `
 const ItemBlueStar = styled.div`
   display: flex;
@@ -271,7 +272,6 @@ function HomeFeatured() {
     setSelectedMovie(movie)
     setIsModalInfoOpen(true)
   }
-  
 
   const [data, setData] = useState([])
 
@@ -282,7 +282,6 @@ function HomeFeatured() {
 
       if (Constant.SUCCESS == json.response_key) {
         setData(json.data)
-        console.log(data);
       }
     }
 

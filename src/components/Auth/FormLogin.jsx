@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/authSlice';
+import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 const LoginBody = styled.div`
     width: 100%;
@@ -103,13 +105,17 @@ const LoginButton = styled.button`
     cursor: pointer;
 `
 function FormLogin() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    const { email, password } = e.target.elements;
-    dispatch(login({ email: email.value, password: password.value }));
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    dispatch(login({ email, password }));
+    navigate("/");
   };
+  const error = useSelector(state => state.auth.error);
   return (
     <LoginBody>
         <LoginBackground>
@@ -132,6 +138,7 @@ function FormLogin() {
                     </LoginLabel>
                     <FormInput name='password' type="password"/>
                     <br />
+                    {error && <LoginLabel>{error}</LoginLabel>}
                     <br />
                     <FormButton type="submit">Sign In</FormButton>
                       <LoginNew>New to IMDb?</LoginNew>
