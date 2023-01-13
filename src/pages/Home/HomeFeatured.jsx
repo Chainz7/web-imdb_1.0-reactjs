@@ -91,15 +91,15 @@ const ItemBookmark = styled.div`
   width: 0;
   height: 3rem;
   margin-left: -237px;
-  border-left: 22px solid ${blackTwoColor};
-  border-right: 22px solid ${blackTwoColor};
+  border-left: 20px solid ${blackTwoColor};
+  border-right: 20px solid ${blackTwoColor};
   border-bottom: 14px solid transparent;
   border-radius: 2px 0 0 0;
   opacity: .6;
   cursor: pointer;
   &:hover {
-    border-left: 22px solid ${blackTwoColor};
-    border-right: 22px solid ${blackTwoColor});
+    border-left: 20px solid ${blackTwoColor};
+    border-right: 20px solid ${blackTwoColor};
     opacity: 1;
     transition: all 0.2s ease-in-out;
   }

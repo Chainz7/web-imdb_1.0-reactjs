@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -8,6 +8,8 @@ import FormSearchLogo from '@mui/icons-material/Search';
 import { whiteOneColor, blackTwoColor } from '../assets/variables'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../store/authSlice';
+import SearchModal from './Navbars/SearchModal'
+import { Constant } from '../constant/appConstant';
 
 const NavbarContainer = styled.nav`
   font-size: 14px;
@@ -60,7 +62,7 @@ const MenuLine = styled.div`
 const MenuText = styled.div`
 
 `
-const FormContainer = styled.form`
+const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,15 +102,15 @@ const FormTriangle = styled.div`
   border-top: 6px solid ${blackTwoColor};
 `
 const FormInputContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  display: grid;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 100%;
 `
 const FormInput = styled.input`
-  width: 100%;
-  height: 27px;
+  width: 579px;
+  height: 30px;
   outline: none;
   border: none;
 `
@@ -121,6 +123,9 @@ const FormSearchContainer = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+`
+const SearchModalContainer = styled.div`
+  display: ${props => (props.isOpen ? 'block' : 'none')};
 `
 const IMDbContainer = styled.div` 
   direction: rtl;
@@ -232,22 +237,57 @@ const ButtonLogout = styled.div`
 //   border-top: 6px solid ${whiteOneColor};
 // `
 const Navbar = () => {
-  const dispatch = useDispatch();
-
+  
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const location = useLocation()
+  const isLoginOrSignup = location.pathname === '/login' || location.pathname === '/signup'
+  const dispatch = useDispatch();
   const email = useSelector(state => state.auth.email);
   const handleLogout = () => {
     dispatch(logout());
   };
-
+  
   const [isModalMenuOpen, setIsModalMenuOpen] = useState(false);
   const [isModalIMDbOpen, setIsModalIMDbOpen] = useState(false);
-  const location = useLocation()
-  const isLoginOrSignup = location.pathname === '/login' || location.pathname === '/signup'
+  const [mouseOverTime, setMouseOverTime] = useState(null);
   const MenuModalClose = () => {
     setIsModalMenuOpen(false);
   }
   
+  const handleIMDbMouseEnter = () => {
+    setMouseOverTime(Date.now());
+    setTimeout(() => {
+      if (Date.now() - mouseOverTime > 10) {
+        setIsModalIMDbOpen(true);
+      }
+    }, 10);
+  };
+  const handleIMDbMouseLeave = () => {
+    setIsModalIMDbOpen(false);
+  };
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('http://localhost:8000/movies')
+      const json = await response.json()
+      if (Constant.SUCCESS == json.response_key) {
+        setData(json.data)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const [search, setSearch] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [IsModalSearchOpen, setIsModalSearchOpen] = useState(false);
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
+      const results = data.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()));
+      setSearchResults(results);
+    }
+  }
+
   return ( isLoginOrSignup ? null : 
     <NavbarContainer>
       <LogoContainer>
@@ -270,15 +310,22 @@ const Navbar = () => {
           <FormTriangle/>
         </FormCategory>
         <FormInputContainer>
-          <FormInput type="text" placeholder='Search IMDb' />
+          <FormInput type="text" placeholder='Search IMDb' 
+            value={search} 
+            onChange={e => setSearch(e.target.value)} 
+            onKeyPress={handleSearch}
+            onClick={() => setIsModalSearchOpen(true)}/>
+          <SearchModalContainer isOpen={IsModalSearchOpen}>
+            <SearchModal searchResults={searchResults} onClose={() => setIsModalSearchOpen(false)} />
+          </SearchModalContainer>
         </FormInputContainer>
         <FormSearchContainer>
           <FormSearchLogo/>
         </FormSearchContainer>
       </FormContainer>
-      <IMDbContainer onMouseEnter={() => setIsModalIMDbOpen(true)} onMouseLeave={() => setIsModalIMDbOpen(false)}>
+      <IMDbContainer onMouseEnter={handleIMDbMouseEnter} onMouseLeave={handleIMDbMouseLeave}>
           <IMDbTextWhite>IMDb<IMDbTextBlue>Pro</IMDbTextBlue></IMDbTextWhite>
-          <IMDbModalContainer onMouseLeave={() => setIsModalIMDbOpen(false)} isOpen={isModalIMDbOpen}>
+          <IMDbModalContainer onMouseLeave={handleIMDbMouseLeave} isOpen={isModalIMDbOpen}>
             <IMDbModal/>
           </IMDbModalContainer>
       </IMDbContainer>

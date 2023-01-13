@@ -312,7 +312,7 @@ function HomeDashboard() {
           <StyledSwiper navigation={true} modules={[Navigation]} className="mySwiper">
             {/* REPETITION DATA START*/}
             {sorted.slice(0, 3).map((movie) => ( 
-            <SwiperSlide>
+            <SwiperSlide key={movie.id}>
               <ImageContainer>
                 <ImageBig src={movie.cover_picture_url} alt="" />
                 <ImageOverlay>
@@ -345,7 +345,7 @@ function HomeDashboard() {
 
             {/* REPETITION DATA START*/}
             {sorted.slice(0, 3).map((movie) => (  
-            <ListBox>
+            <ListBox key={movie.id}>
               <ListImage src={movie.cover_picture_url} alt=""/>
               <ListItems>
                 <ListAttributes>

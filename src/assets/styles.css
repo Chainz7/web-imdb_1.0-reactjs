@@ -45,7 +45,7 @@ img {
 }
 
 .watchlist {
-    pointer-events : none;
+    pointer-events: none;
 }
 
 .modal-enter {
@@ -64,4 +64,4 @@ img {
 .modal-exit-active {
     opacity: 0;
     transition: opacity 60ms;
-} 
+}
