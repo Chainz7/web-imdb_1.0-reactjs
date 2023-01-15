@@ -12,7 +12,7 @@ export const authSlice = createSlice({
     //   state.isLoggedIn = true;
     //   state.email = action.payload.email;
     login: (state, action) => {
-      if (action.payload.email === 'cha@cha.com' && action.payload.password === '1234') {
+      if (action.payload.email === 'cha@mail.id' && action.payload.password === '1234') {
         state.isLoggedIn = true;
         state.email = action.payload.email;
         state.error = '';

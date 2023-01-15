@@ -76,6 +76,7 @@ const BodyLine= styled.div`
 const BodyResults= styled.div`
     display: flex;
     justify-content: flex-end;
+    width: 692px;
     align-items: center;
     padding-top: .5rem;
     padding-right: .5rem;
