@@ -24,12 +24,19 @@ const HomeLeftContainer = styled.div`
     width: 53rem;
     height: 33.5rem;
     border-radius: .25rem;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+      width: 41rem;
+      height: 27.5rem;
+    }
 `
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 33.5rem;
   border-radius: .25rem;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    height: 27.5rem;
+  }
 `
 const ImageBig = styled.img.attrs({
   className: 'my-class',
@@ -79,6 +86,22 @@ const ImageBookmark = styled.div`
     opacity: .9;
     transition: all 0.2s ease-in-out;
   }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    height: 2.45rem;
+    margin-bottom: 136px;
+    margin-left: -147px;
+    border-left: 20px solid ${blackTwoColor};
+    border-right: 20px solid ${blackTwoColor};
+    border-bottom: 14px solid transparent;
+    opacity: .5;
+    cursor: pointer;
+    &:hover {
+      border-left: 20px solid ${blackTwoColor};
+      border-right: 20px solid ${blackTwoColor};
+      opacity: .9;
+      transition: all 0.2s ease-in-out;
+    }
+  }
 `
 const ImagePlus = styled(AddIcon)({
   
@@ -87,8 +110,11 @@ const ImageName = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   margin-left: 126px;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    margin-left: 90px;
+  }
 `
 const ImageCircle = styled.div`
   display: flex;
@@ -103,8 +129,20 @@ const ImageCircle = styled.div`
     border: 3px solid ${orangeOneColor};
     transition: all 0.1s ease-in-out;
     .image_play {
-      border-left: 15px solid ${orangeOneColor};
+      border-left: 19px solid ${orangeOneColor};
       transition: all 0.1s ease-in-out;
+    }
+  }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 52px;
+    height: 52px;
+    &:hover {
+      border: 3px solid ${orangeOneColor};
+      transition: all 0.1s ease-in-out;
+      .image_play {
+        border-left: 17px solid ${orangeOneColor};
+        transition: all 0.1s ease-in-out;
+      }
     }
   }
 `
@@ -115,10 +153,19 @@ const ImagePlay = styled.div`
   border-radius: .2rem;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-  border-left: 15px solid ${whiteOneColor};
+  border-left: 19px solid ${whiteOneColor};
   &:hover {
-    border-left: 15px solid ${orangeOneColor};
+    border-left: 19px solid ${orangeOneColor};
     transition: all 0.1s ease-in-out;
+  }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 17px solid ${whiteOneColor};
+    &:hover {
+      border-left: 17px solid ${orangeOneColor};
+      transition: all 0.1s ease-in-out;
+    }
   }
 `
 const ImageTitles = styled.div`
@@ -130,6 +177,11 @@ const ImageTitle = styled.div`
   font-weight: 400;
   font-size: 34px;
   line-height: 40px;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+  }
 `
 const ImageSubTitle = styled.div`
   font-weight: 400;
@@ -139,12 +191,23 @@ const ImageSubTitle = styled.div`
   overflow: hidden;
   width: 440px;
   height: 25px;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+    width: 330px;
+  }
 `
 const ImageMinute = styled.div`
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
   color: rgba(255, 255, 255, 0.7);
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+  }
 `
 const HomeRightContainer = styled.div`
   display: grid;
@@ -154,12 +217,21 @@ const HomeRightContainer = styled.div`
   width: 27.7rem;
   height: 33.5rem;
   border-radius: .25rem;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 19.8rem;
+    height: 11.5rem;
+  }
 `
 const RightUpcoming = styled.div`
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   color: ${orangeOneColor};
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+  }
 `
 const ListsContainer = styled.div`
   display: grid;
@@ -171,6 +243,10 @@ const ListsContainer = styled.div`
   border-radius: .25rem;
   padding: .8rem;
   background: linear-gradient(0deg, rgba(0,0,0,1) 55%, rgba(18,18,18,1) 100%);
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 18.4rem;
+    margin-top: .6rem;
+  }
 `
 const ListBox = styled.div`
   display: flex;
@@ -198,6 +274,10 @@ const ListImage = styled.img.attrs({
   width: 88px;
   height: 130px;
   border-radius: .25rem;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 67px;
+    height: 99px;
+  }
 `
 const ListItems = styled.div`
   display: grid;
@@ -207,7 +287,7 @@ const ListAttributes = styled.div`
   justify-content: flex-start;
   align-items: end;
   gap: .5rem;
-  margin-bottom: .5rem;
+  margin-bottom: .3rem;
 `
 const ListCircle = styled.div`
   display: flex;
@@ -221,6 +301,10 @@ const ListCircle = styled.div`
     border: 1.5px solid ${orangeOneColor};
     transition: all 0.1s ease-in-out;
   }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 25px;
+    height: 25px;
+  }
 `
 const ListPlay = styled.div`
   width: 0; 
@@ -233,6 +317,16 @@ const ListPlay = styled.div`
   &:hover {
     border-left: 9px solid ${orangeOneColor};
     transition: all 0.1s ease-in-out;
+  }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    border-radius: .2rem;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid ${whiteOneColor};
+    &:hover {
+      border-left: 8px solid ${orangeOneColor};
+      transition: all 0.1s ease-in-out;
+    }
   }
 `
 const ListMinute = styled.div`
@@ -254,12 +348,15 @@ const ListSubTitle = styled.div`
   overflow: hidden;
   width: 100%;
   height: 20px;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 220px;
+  }
 `
 const ListFooter = styled.div`
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  margin-top: 1.4rem;
+  margin-top: 1rem;
   cursor: pointer;  
   &:hover {
     color: ${orangeTwoColor};

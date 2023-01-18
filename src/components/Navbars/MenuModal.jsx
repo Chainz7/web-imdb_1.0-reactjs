@@ -21,12 +21,18 @@ const MenuModalContainer= styled.div`
     max-height: calc(100vh - 32px); 
     overflow-y: auto; 
     animation: slideDown 0.3s linear;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        width: 100%;
+      }
 `
 const NavContainer = styled.div`
     pointer-events: auto;
     display: flex;
     gap: 55rem;
     pointer-events: none;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        gap: 51rem;
+      }
 `
 const NavImageContainer = styled.div`
     width: 6rem;
@@ -53,9 +59,12 @@ const BodyContainer = styled.div`
     pointer-events: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 12rem;
+    grid-column-gap: 13.5rem;
     grid-row-gap: 2rem;
     margin-bottom: 3rem;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        grid-column-gap: 11.5rem;
+      }
 `
 const BodyItems = styled.div`
     display: grid;

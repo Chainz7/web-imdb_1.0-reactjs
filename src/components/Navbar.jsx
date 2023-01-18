@@ -19,6 +19,12 @@ const NavbarContainer = styled.nav`
   justify-content: center;
   align-items: center;
   padding: 0.7rem;
+
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `
 const LogoContainer = styled.div`
   width: 4rem;
@@ -72,6 +78,10 @@ const FormContainer = styled.div`
   border-radius: 0.2rem;
   margin-right: 0.75rem;
   background: ${whiteOneColor};
+
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 436px;
+  }
 `
 const FormCategory = styled.div`
   display: flex;
@@ -107,12 +117,18 @@ const FormInputContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 100%;
+  }
 `
 const FormInput = styled.input`
   width: 579px;
   height: 30px;
   outline: none;
   border: none;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 320px;
+  }
 `
 const FormSearchContainer = styled.button`
   display: flex;

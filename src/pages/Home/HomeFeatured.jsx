@@ -18,9 +18,12 @@ import { CSSTransition } from 'react-transition-group';
 
 const HomeContainer = styled.div`
   display: grid;
-  justify-content: center;
+  justify-items: center;
   align-items: start;
   gap: 1rem;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 100%;
+  }
 `
 const FeaturedTitle = styled.div`
   display: flex;
@@ -31,20 +34,29 @@ const FeaturedTitle = styled.div`
   line-height: 40px;
   color: ${orangeOneColor};
   width: 81.5rem;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    font-size: 28px;
+    line-height: 36px;
+    width: 43.5rem;
+    margin-left: -18.5rem;
+  }
 `
 const FeaturedItems = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-left: 0.2rem;
   width: 81.5rem;
   height: 32rem;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 62.7rem;
+    margin-left: -1.2rem;
+  }
 `
 const FeaturedItem = styled.div`
   display: grid;
   justify-content: start;
   align-items: start;
-  grid-template-rows: 60% 40%;
+  grid-template-rows: 55% 45%;
   width: 100%;
   height: 31rem;
   border-radius: .3rem;
@@ -67,6 +79,10 @@ const StyledSwiper = styled(Swiper)`
         transition: all 0.2s ease-in-out;
     }
   }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    margin-left: .6rem;
+    margin-right: -.6rem;
+  }
 `
 const ItemOverlay = styled.div`
   display: flex;
@@ -74,6 +90,9 @@ const ItemOverlay = styled.div`
   align-items: flex-start;
   width: 81.5rem;
   height: 100%;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 62.7rem;
+  }
 `
 const ItemImage = styled.img.attrs({
   className: 'my-class',
@@ -83,6 +102,9 @@ const ItemImage = styled.img.attrs({
   height: 100%;
   border-radius: .25rem;
   cursor: pointer;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 11.05rem;
+  }
 `
 const ItemBookmark = styled.div`
   display: flex;
@@ -103,6 +125,9 @@ const ItemBookmark = styled.div`
     opacity: 1;
     transition: all 0.2s ease-in-out;
   }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    margin-left: -383.5px;
+  }
 `
 const ItemPlus = styled(AddIcon)({
     
@@ -115,6 +140,9 @@ const ItemTitles = styled.div`
   padding-left: 0.4rem;
   padding-right: 0.4rem;
   height: 100%;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 9.7rem;
+  }
 `
 const ItemStars = styled.div`
   display: flex;
@@ -123,6 +151,10 @@ const ItemStars = styled.div`
   gap: .1rem;
   width: 100%;
   height: 2.9rem;
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    width: 10rem;
+    height: 2.9rem;
+  }
 `
 const ItemYellowStar = styled(StarIcon)({
     color: '#f5c518',
@@ -133,6 +165,10 @@ const ItemRating = styled.div`
     line-height: 25px;
     color: rgba(255, 255, 255, 0.7);
     margin-top: .2rem;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+      font-size: 16px;
+      line-height: 23px;
+    }
 `
 const ItemBlueStar = styled.div`
   display: flex;
@@ -152,6 +188,12 @@ const ItemBlueStar = styled.div`
         transition: all 0.2s ease-in-out;
     }  
   }
+  @media (min-width: 1025px) and (max-width: 1200px) {
+    padding-left: .7rem;
+    padding-right: .7rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+  }
 `
 const BlueStar = styled(StarBorderIcon)({
     color: '#5695e9',
@@ -160,24 +202,33 @@ const ItemTitleContainer = styled.div`
     height: 2.9rem;
     width: 13.7rem;
     overflow: hidden;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+      width: 10rem;
+    }
 `
 const ItemTitle = styled.div`
-margin-left: 0.2rem;
+    margin-left: 0.2rem;
     font-weight: 400;
     font-size: 18px;
     cursor: pointer;
     &:hover {
         text-decoration: underline;
     }
+    @media (min-width: 1025px) and (max-width: 1200px) {
+      font-size: 16px;
+    }
 `
 const ItemButtons = styled.div`
     display: grid;
-    justify-items: center;
+    justify-items: start;
     align-items: start;
     gap: .5rem;
     height: 100%;
     margin-top: .3rem;
     margin-bottom: 5rem;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+      width: 10rem;
+    }
 `
 const ItemWatchContainer = styled.div`
     display: block;
@@ -192,23 +243,37 @@ const ItemWatchContainer = styled.div`
         background-color: rgba(255, 255, 255, 0.2);
         transition: all 0.2s ease-in-out;
     }
+    @media (min-width: 1025px) and (max-width: 1200px) {
+      width: 10rem;
+      padding: 0.4rem;
+      padding-left: .1rem;
+      padding-right: .1rem;
+      margin-left: 0;
+    }
 `
 const ItemWatch = styled.div`
     font-weight: 600;
     font-size: 16px;
     color: #5695e9;
+    @media (min-width: 1025px) and (max-width: 1200px) {  
+      font-size: 14px;
+    }
 `
 const ItemTrailerContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: -2.4rem;
+    margin-left: 1rem;
 `
 const ItemTrailers = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5rem;
+    @media (min-width: 1025px) and (max-width: 1200px) {  
+      gap: 2.5rem;
+    }
 `
 const ItemTrailer = styled.div`
     padding: 0.5rem;
@@ -219,6 +284,12 @@ const ItemTrailer = styled.div`
     &:hover {
         background-color: rgba(255, 255, 255, 0.1);
         transition: all 0.2s ease-in-out;
+    }
+    @media (min-width: 1025px) and (max-width: 1200px) {  
+      padding-top: .4rem;
+      padding-bottom: .4rem;
+      font-weight: 500;
+      font-size: 15px;
     }
 `
 const ItemInfos = styled.div`
@@ -237,6 +308,7 @@ const ItemInfos = styled.div`
       background-color: rgba(255, 255, 255, 0.1);
       transition: all 0.2s ease-in-out;
   }
+
 `
 const ItemInfo = styled.div`
     
@@ -246,6 +318,11 @@ const FeaturedRecomendations = styled.div`
     margin-bottom: 5rem;
     display: flex;
     justify-content: flex-end;
+    margin-left: 69.5rem;
+    @media (min-width: 1025px) and (max-width: 1200px) {  
+      margin-left: 50.1rem;
+    }
+    
 `
 const FeaturedRecomendation = styled.div`
     font-weight: 600;

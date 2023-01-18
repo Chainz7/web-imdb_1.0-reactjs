@@ -20,8 +20,8 @@ const BodyContainer= styled.div`
     display: flex;
     justify-content: start;
     gap: 1rem;
-    width: 604px; 
-    height: 221px; 
+    width: 550px; 
+    height: 201px; 
     background: linear-gradient(0deg, rgba(20,127,176,1) 0%, rgba(0,17,31,1) 100%);
     border-radius: 0.3rem;
     border: none;

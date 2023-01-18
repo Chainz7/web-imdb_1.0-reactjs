@@ -11,6 +11,9 @@ const SearchModalContainer=styled.div`
     top: 50px;
     z-index: 998;
     background-color: transparent;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        width: 437px;
+      }
 `
 const BodyContainer= styled.div`
     color: white;
@@ -20,6 +23,9 @@ const BodyContainer= styled.div`
     width: 100%; 
     background-color: rgb(31,31,31);
     border-radius: 0.3rem;
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        width: 100%; 
+      }
 `
 const BodyBox= styled.div`
     display: flex;
@@ -30,12 +36,15 @@ const BodyBox= styled.div`
     padding-left: .5rem;
     padding-top: .5rem;
     padding-bottom: .5rem;
-    border-radius: 0.3rem;
+    border-radius: 0.3rem 0.3rem 0 0;
     background-color: rgb(31,31,31);
     cursor: pointer;
     &:hover {
         background-color: rgb(255,255,255, .1);
     }
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        width: 429px;
+      }
 `
 const BodyImage= styled.img`
     object-fit: cover;
@@ -87,6 +96,9 @@ const BodyResults= styled.div`
     &:hover {
         background-color: rgb(255,255,255, .1);
     }
+    @media (min-width: 1025px) and (max-width: 1200px) {
+        width: 429px;
+      }
 `
 const BodyResult= styled.span`
     font-weight: 600;
