@@ -18,6 +18,9 @@ const FooterContainer = styled.div`
   background-color: ;
   margin-top: -2rem;
   margin-bottom: 1.25rem;
+  @media (min-width: 768px) and (max-width: 1025px) {
+    display: none;
+  }
 `
 const FooterButton = styled.button`
   width: 13rem;

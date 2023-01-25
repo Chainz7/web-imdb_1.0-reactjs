@@ -25,6 +25,9 @@ const NavbarContainer = styled.nav`
     justify-content: center;
     align-items: center;
   }
+  @media (min-width: 768px) and (max-width: 1025px) {
+
+  }
 `
 const LogoContainer = styled.div`
   width: 4rem;
@@ -82,6 +85,9 @@ const FormContainer = styled.div`
   @media (min-width: 1025px) and (max-width: 1200px) {
     width: 436px;
   }
+  @media (min-width: 768px) and (max-width: 1025px) {
+    width: 100px;
+  }
 `
 const FormCategory = styled.div`
   display: flex;
@@ -120,6 +126,9 @@ const FormInputContainer = styled.div`
   @media (min-width: 1025px) and (max-width: 1200px) {
     width: 100%;
   }
+  @media (min-width: 768px) and (max-width: 1025px) {
+    widthL 100%;
+  }
 `
 const FormInput = styled.input`
   width: 579px;
@@ -128,6 +137,9 @@ const FormInput = styled.input`
   border: none;
   @media (min-width: 1025px) and (max-width: 1200px) {
     width: 320px;
+  }
+  @media (min-width: 768px) and (max-width: 1025px) {
+    width: 100px;
   }
 `
 const FormSearchContainer = styled.button`
@@ -156,6 +168,9 @@ const IMDbContainer = styled.div`
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transition: all 0.1s ease-in-out;
+  }
+  @media (min-width: 768px) and (max-width: 1025px) {
+    display: none;
   }
 `
 const IMDbTextWhite = styled.span` 
@@ -191,6 +206,9 @@ const WatchlistContainer = styled.div`
       border-right: 8px solid ${whiteOneColor};
       transition: all 0.2s ease-in-out;
     }
+  }
+  @media (min-width: 768px) and (max-width: 1025px) {
+    display: none;
   }
 `
 const WatchlistBookmark = styled.div`
