@@ -23,6 +23,9 @@ const FooterContainer = styled.div`
   }
 `
 const FooterButton = styled.button`
+  display: none;
+  justify-content: center;
+  align-items: center;
   width: 13rem;
   padding: 10px;
   border: 1px solid rgba(0,0,0,0.2);

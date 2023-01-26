@@ -189,7 +189,7 @@ const LineContainer = styled.span`
   margin-right: 0.5rem;
 `
 const WatchlistContainer = styled.div`
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
@@ -223,6 +223,7 @@ const WatchlistText = styled.span`
 
 `
 const SigninContainer = styled.div`
+  display: none;
   padding: 0.48rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -303,7 +304,7 @@ const Navbar = () => {
   const [data, setData] = useState([])
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:8000/movies')
+      const response = await fetch('https://raw.githubusercontent.com/chainz7/clone-imdb-api/main/db.json')
       const json = await response.json()
       if (Constant.SUCCESS == json.response_key) {
         setData(json.data)

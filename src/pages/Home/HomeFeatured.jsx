@@ -354,7 +354,7 @@ function HomeFeatured() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:8000/movies')
+      const response = await fetch('https://raw.githubusercontent.com/chainz7/clone-imdb-api/main/db.json')
       const json = await response.json()
 
       if (Constant.SUCCESS == json.response_key) {
