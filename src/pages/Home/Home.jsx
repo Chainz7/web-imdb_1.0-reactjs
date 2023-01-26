@@ -8,9 +8,6 @@ const HomeContainer = styled.div`
   display: grid;
   gap: 2rem;
   margin-top: .6rem;
-  @media (min-width: 768px) and (max-width: 1025px) {
-    display: none;
-  }
 `
 
 function Home() {
